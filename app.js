@@ -34,7 +34,7 @@ hbs.registerHelper('getCurrentTime', () => {
 })
 
 //depending on views, perform different gets
-app.get('/home/country/:countryName/', exchangelinks);
+app.get('/home/country/:countryName', exchangelinks);
 
 app.get('/home/country/:countryName/exchange1', exchange1route);
 
