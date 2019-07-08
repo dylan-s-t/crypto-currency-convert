@@ -52,8 +52,10 @@ app.get('/*', function (req, res) {
     res.redirect('/home')
 });
 
-// set port for web page to be locally hosted on 
+// set port for web page to be locally hosted on  - remove for actual hosting 
+
+/*
 app.listen(8080, () => {
     console.log("server is running!"); // is called when connects
 });
-
+**/
