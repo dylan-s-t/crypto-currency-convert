@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Crypto Exchange Rates</title>
+        <style>
+            body {background-color: powderblue;}
+            h2   {color: rgb(6, 44, 12);}
+            ul   {color: rgb(16, 104, 60);}
+        </style>
+    </head>
+    {{> header}}
+    <body>
+        <h2>Current exchange rates for {{code}} from {{siteName}}:</h2>
+        <ul>
+            <li>1 BTC = {{BTC}} {{code}}</li>
+            <li>1 ETH = {{ETH}} {{code}}</li>
+        </ul>
+        <p>Data retrieved at {{getCurrentTime}}</p>
+        <p><a href={{attLink}} target="_blank">Data Provided By {{siteName}}</a></p>
+           
+    </body>
+    {{> footer}}
+</html>
