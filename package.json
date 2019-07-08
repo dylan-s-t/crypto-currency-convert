@@ -4,7 +4,7 @@
     "description": "assignment 4 for COMP 2912",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "node app.js"
     },
     "keywords": [],
     "author": "dylan",
