@@ -48,9 +48,11 @@ app.get('/home', function (req, res) {
 });
 
 // redirect all urls entered that are not /country/{country name} to /home
+/*
 app.get('/*', function (req, res) {
     res.redirect('/home')
 });
+**/
 
 // set port for web page to be locally hosted on  - remove for actual hosting 
 
@@ -59,3 +61,6 @@ app.listen(8080, () => {
     console.log("server is running!"); // is called when connects
 });
 **/
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => console.log(`Server started on port ${port}`));
