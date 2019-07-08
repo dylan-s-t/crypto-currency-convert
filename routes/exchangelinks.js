@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // get url and send view
-router.get('/country/:countryName', (req, res) => {
+router.get('/home/country/:countryName', (req, res) => {
     let country = req.params.countryName;
     res.render('exchangelinks.hbs', {
         country: country,

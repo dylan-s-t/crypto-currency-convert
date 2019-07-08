@@ -34,16 +34,16 @@ hbs.registerHelper('getCurrentTime', () => {
 })
 
 //depending on views, perform different gets
-app.get('/country/:countryName/', exchangelinks);
+app.get('/home/country/:countryName/', exchangelinks);
 
-app.get('/country/:countryName/exchange1', exchange1route);
+app.get('/home/country/:countryName/exchange1', exchange1route);
 
-app.get('/country/:countryName/exchange2', exchange2route);
+app.get('/home/country/:countryName/exchange2', exchange2route);
 
 // display some information on the home page to get the user started
 app.get('/home', function (req, res) {
     res.send(
-        '<h2>Currency conversion display - go to /country/{your country name} to display data</h2>'
+        '<h2>Currency conversion display - go to home/country/{your country name} to display data</h2>'
     )
 });
 
@@ -55,12 +55,13 @@ app.get('/*', function (req, res) {
 
 
 // set port for web page to be locally hosted on  - remove for actual hosting 
-
 /*
 app.listen(8080, () => {
     console.log("server is running!"); // is called when connects
 });
 **/
+
+// set port to be hosted on heroku/github
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));

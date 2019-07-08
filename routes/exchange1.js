@@ -8,7 +8,7 @@ var currResult1;
 var countryInfo;
 
 // get url and send view
-router.get('/country/:countryName/exchange1', (req, res, next) => {
+router.get('/home/country/:countryName/exchange1', (req, res, next) => {
     countryName = req.params.countryName;
     console.log("getting link 1 data")
 
