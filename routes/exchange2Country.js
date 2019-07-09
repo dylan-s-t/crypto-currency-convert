@@ -1,40 +1,41 @@
 const express = require('express');
 const router = express.Router();
 const requestCountryData = require('../requestCountryData.js');
-const requestCryptoExchange1 = require('../requestCryptoExchange1');
+const requestCryptoExchange2 = require('../requestCryptoExchange2');
 
 // declare variables 
-var currResult1;
+var currResult2;
 var countryInfo;
 
 // get url and send view
-router.get('/home/country/:countryName/exchange1', (req, res, next) => {
+router.get('/home/countrySearch/:countryName/exchange2', (req, res, next) => {
     countryName = req.params.countryName;
-    console.log("getting link 1 data")
+    console.log("getting link 2 data")
 
     // get info about country from REST Countries
     requestCountryData.getCountryInfo(countryName)
 
     // if data received from first promise
     .then((data) => {
+
         console.log("data received from getCountryInfo"); // log to terminal that result received
         countryInfo = data; // store country data in countryInfo
         currCode = countryInfo.code;
-        
-        // create second promise for exchange data
-        return requestCryptoExchange1.getCryptoExchange1(currCode);
+        return requestCryptoExchange2.getCryptoExchange2(currCode);
+
     // if data recieved from second promise
-    }).then((result1) => {
-        console.log("data received from exchange1")
-        currResult1 = result1;
+    }).then((result2) => {
+        console.log("data received from exchange2")
+        currResult2 = result2;
         res.render('exchangeDisplay.hbs', {
             code: countryInfo.code,
-            siteName: "CryptoCompare",
-            BTC: currResult1.BTC[countryInfo.code],
-            ETH: currResult1.ETH[countryInfo.code],
-            attLink:"https://www.cryptocompare.com/",
+            siteName: "Nomics",
+            BTC: currResult2[0].price,
+            ETH: currResult2[1].price,
+            attLink: "https://nomics.com",
             showHeader: true,
-            showFooter: true
+            showFooter: true,
+            showNavBar: true
         });
     })
     // catch method for all errors

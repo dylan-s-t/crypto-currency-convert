@@ -17,10 +17,16 @@ const express = require('express');
 const app = express(); // creates express application that allows you to use the methods in express?
 const hbs = require('hbs');
 hbs.registerPartials(__dirname + '/views/partials');
-const exchangelinks = require('./routes/exchangelinks');
-const exchange1route = require('./routes/exchange1');
-const exchange2route = require('./routes/exchange2');
+const homePageRoute = require('./routes/home');
+const exchangeLinksCountry = require('./routes/exchangeLinksCountry');
+const exchangeLinksCode = require('./routes/exchangeLinksCode');
+const exchange1Country = require('./routes/exchange1Country');
+const exchange2Country = require('./routes/exchange2Country');
+const exchange1Code = require('./routes/exchange1Code');
+const exchange2Code = require('./routes/exchange2Code');
 
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
 // register helpers
 hbs.registerHelper('getCurrentYear', () => {
@@ -33,19 +39,19 @@ hbs.registerHelper('getCurrentTime', () => {
     return time;
 })
 
-//depending on views, perform different gets
-app.get('/home/country/:countryName', exchangelinks);
-
-app.get('/home/country/:countryName/exchange1', exchange1route);
-
-app.get('/home/country/:countryName/exchange2', exchange2route);
-
 // display some information on the home page to get the user started
-app.get('/home', function (req, res) {
-    res.send(
-        '<h2>Currency conversion display - go to home/country/{your country name} to display data</h2>'
-    )
-});
+app.get('/home', homePageRoute);
+
+//depending on views, perform different gets
+app.post('/home/countrySearch', exchangeLinksCountry);
+app.get('/home/countrySearch/:countryName/exchange1', exchange1Country);
+app.get('/home/countrySearch/:countryName/exchange2', exchange2Country);
+
+app.post('/home/codeSearch', exchangeLinksCode);
+app.get('/home/codeSearch/:code/exchange1', exchange1Code);
+app.get('/home/codeSearch/:code/exchange2', exchange2Code);
+
+
 
 // redirect all urls entered that are not /country/{country name} to /home
 
